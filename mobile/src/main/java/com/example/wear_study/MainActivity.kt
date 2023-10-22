@@ -70,6 +70,15 @@ class MainActivity : AppCompatActivity() {
                             ) {
                                 Text("Add count")
                             }
+                            Button(onClick = {
+                                sendMessageToWearable(
+                                    context,
+                                    "/start-wear-app",
+                                    null
+                                )
+                            }) {
+                                Text(text = "Start wear app")
+                            }
                         }
                     }
                 }
@@ -90,7 +99,7 @@ fun findWearableNode(context: Context) {
         }
 }
 
-fun sendMessageToWearable(context: Context, path: String, data: ByteArray) {
+fun sendMessageToWearable(context: Context, path: String, data: ByteArray?) {
     connectedNodeID?.let { nodeId ->
         Wearable.getMessageClient(context).sendMessage(nodeId, path, data)
             .addOnSuccessListener {

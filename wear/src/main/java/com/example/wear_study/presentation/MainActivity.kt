@@ -28,27 +28,10 @@ import com.google.android.gms.wearable.MessageClient
 import com.google.android.gms.wearable.MessageEvent
 import com.google.android.gms.wearable.Wearable
 
-class MainActivity : ComponentActivity(), MessageClient.OnMessageReceivedListener {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        Wearable.getMessageClient(this).addListener(this)
-    }
-
-    override fun onMessageReceived(messageEvent: MessageEvent) {
-        val message = String(messageEvent.data)
-        Log.d("WearApp", "Message received: $message")
-        val sharedPref = getSharedPreferences("WatchFacePreferences", MODE_PRIVATE)
-        with(sharedPref.edit()) {
-            putString("message", message)
-            apply()
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Wearable.getMessageClient(this).removeListener(this)
     }
 }
 

@@ -81,7 +81,7 @@ class DualCanvasRenderer(
         val p_message = Paint()
 
         p_message.color = Color.BLACK
-        p_message.textSize = 50f
+        p_message.textSize = 70f
 
         if (isTapped) {
             canvas.drawColor(bg_light)
